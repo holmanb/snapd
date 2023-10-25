@@ -587,13 +587,28 @@ func (s *sysconfigSuite) TestCloudInitStatus(c *C) {
 			exp:             sysconfig.CloudInitDone,
 		},
 		{
+			comment:         "degraded done",
+			cloudInitOutput: "status: degraded done",
+			exp:             sysconfig.CloudInitDone,
+		},
+		{
 			comment:         "running",
 			cloudInitOutput: "status: running",
 			exp:             sysconfig.CloudInitEnabled,
 		},
 		{
+			comment:         "degraded running",
+			cloudInitOutput: "status: degraded running",
+			exp:             sysconfig.CloudInitEnabled,
+		},
+		{
 			comment:         "not run",
 			cloudInitOutput: "status: not run",
+			exp:             sysconfig.CloudInitEnabled,
+		},
+		{
+			comment:         "degraded not run",
+			cloudInitOutput: "status: degraded not run",
 			exp:             sysconfig.CloudInitEnabled,
 		},
 		{

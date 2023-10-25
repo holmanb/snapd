@@ -796,10 +796,10 @@ func CloudInitStatus() (CloudInitState, error) {
 		// cloud-init ever changes it's mind and starts reporting error state
 		// with a 0 exit code
 		return CloudInitErrored, nil
-	case "done":
+	case "done", "degraded done":
 		return CloudInitDone, nil
 	// "running" and "not run" are considered Enabled, see doc-comment
-	case "running", "not run":
+	case "running", "not run", "degraded running", "degraded not run":
 		fallthrough
 	default:
 		// these states are all the generic "enabled" state
